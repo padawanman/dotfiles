@@ -1,0 +1,11 @@
+.DS_Store
+.vim/*
+.cache/
+.vimrc.swp
+cache_Vim
+cache_vi
+dircolors-solarized/
+fonts/
+repos/
+state_Vim.vim
+state_vi.vim

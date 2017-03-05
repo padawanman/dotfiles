@@ -1,0 +1,85 @@
+function update() {
+  # update antigen
+  pushd ~/.antigen;git pull origin master;popd;
+
+  antigen update
+  gem update
+  brew update
+  brew upgrade
+
+  # update version managers
+  pushd ~/.nodenv;git pull origin master;popd;
+  pushd ~/.nodenv/plugins/node-build;git pull origin master;popd;
+  pushd ~/.rbenv;git pull origin master;popd;
+  pushd ~/.rbenv/plugins/ruby-build;git pull origin master;popd;
+  pushd ~/.pyenv;git pull origin master;popd;
+  pushd ~/.plenv;git pull origin master;popd;
+  pushd ~/.plenv/plugins/perl-build;git pull origin master;popd;
+  clear
+}
+
+function clean() {
+  gem cleanup
+  brew cleanup -s
+}
+
+function pullall() {
+  var=`pwd`
+  for dir in `\find $var -maxdepth 1 -type d`
+  do
+    pushd $dir;
+    if [ -e .git ]; then
+      git pull
+    fi
+    popd
+  done
+}
+
+function sublime() {
+  open -a Sublime\ Text $1
+}
+
+function vscode() {
+  open -a Visual\ Studio\ Code $1
+}
+
+function tower() {
+  open -a Tower $1
+}
+
+function sketch() {
+  open -a Sketch $1
+}
+
+function iawriter() {
+  open -a iA\ Writer $1
+}
+
+function caret() {
+  open -a Caret $1
+}
+
+function gifify() {
+  if [[ -n "$1" ]]; then
+    if [[ $2 == '--good' ]]; then
+      ffmpeg -i $1 -r 10 -vcodec png out-static-%05d.png
+      time convert -verbose +dither -layers Optimize -resize 900x900\> out-static*.png  GIF:- | gifsicle --colors 128 --delay=5 --loop --optimize=3 --multifile - > $1.gif
+    rm out-static*.png
+  else
+    ffmpeg -i $1 -s 600x400 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > $1.gif
+  fi
+  else
+    echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
+  fi
+}
+
+function webmify(){
+  ffmpeg -i $1 -vcodec libvpx -acodec libvorbis -isync -copyts -aq 80 -threads 3 -qmax 30 -y $2 $1.webm
+}
+
+function gz() {
+  echo "orig size    (bytes): "
+  cat "$1" | wc -c
+  echo "gzipped size (bytes): "
+  gzip -c "$1" | wc -c
+}
