@@ -1,4 +1,5 @@
 .DS_Store
+.vim/
 .cache/
 .vimrc.swp
 cache_Vim
