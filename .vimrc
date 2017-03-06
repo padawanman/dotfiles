@@ -88,7 +88,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
-let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_enable_on_vim_startup = 1
 
 " カーソルキーでbuffer移動
 nnoremap <Left> :bp<CR>
@@ -200,9 +200,15 @@ endfunction
 " -------------------
 " evernote
 " -------------------
+"let g:evervim_devtoken='S=s12:U=1549e6:E=161e0dfccc0:C=15a892e9d90:P=1cd:A=en-devtoken:V=2:H=7c569135ed53328c22aac2a0bf4899dd'
+"let g:vim_markdown_folding_disabled=1
 
-let g:evervim_devtoken='S=s12:U=1549e6:E=161e0dfccc0:C=15a892e9d90:P=1cd:A=en-devtoken:V=2:H=7c569135ed53328c22aac2a0bf4899dd'
-let g:vim_markdown_folding_disabled=1
+" -------------------
+" tweetvim
+" -------------------
+let g:tweetvim_include_rts    = 1
+let g:tweetvim_display_source = 1
+let g:tweetvim_tweet_per_page = 50
 
 " -------------------
 "  tab
